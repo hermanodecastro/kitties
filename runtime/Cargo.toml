@@ -194,6 +194,12 @@ git = 'https://github.com/paritytech/substrate.git'
 tag = 'devhub/latest'
 version = '4.0.0-dev'
 
+[dependencies.pallet-node-authorization]
+default-features = false
+git = 'https://github.com/paritytech/substrate.git'
+tag = 'devhub/latest'
+version = '4.0.0-dev'
+
 [dependencies.serde]
 version =  '1.0.129'
 
@@ -227,6 +233,7 @@ std = [
     'pallet-timestamp/std',
     'pallet-transaction-payment-rpc-runtime-api/std',
     'pallet-transaction-payment/std',
+    'pallet-node-authorization/std',
     'sp-api/std',
     'sp-block-builder/std',
     'sp-consensus-aura/std',

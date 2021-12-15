@@ -3489,6 +3489,7 @@ dependencies = [
 name = "node-kitties"
 version = "4.0.0-dev"
 dependencies = [
+ "bs58",
  "frame-benchmarking",
  "frame-benchmarking-cli",
  "jsonrpc-core",
@@ -3538,6 +3539,7 @@ dependencies = [
  "pallet-grandpa",
  "pallet-identity",
  "pallet-kitties",
+ "pallet-node-authorization",
  "pallet-randomness-collective-flip",
  "pallet-sudo",
  "pallet-timestamp",
@@ -3819,6 +3821,22 @@ dependencies = [
  "sp-core",
  "sp-io",
  "sp-runtime",
+]
+
+[[package]]
+name = "pallet-node-authorization"
+version = "4.0.0-dev"
+source = "git+https://github.com/paritytech/substrate.git?tag=devhub/latest#352c46a648a5f2d4526e790a184daa4a1ffdb3bf"
+dependencies = [
+ "frame-support",
+ "frame-system",
+ "log",
+ "parity-scale-codec",
+ "scale-info",
+ "sp-core",
+ "sp-io",
+ "sp-runtime",
+ "sp-std",
 ]
 
 [[package]]
