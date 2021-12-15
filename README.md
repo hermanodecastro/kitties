@@ -5,7 +5,6 @@
 Clone this repository. 
 
 SSH: `git@github.com:hermanodecastro/kitties.git` 
-or
 HTTPS: `https://github.com/hermanodecastro/kitties.git`
 
 ### Rust Setup
