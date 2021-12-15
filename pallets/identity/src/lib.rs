@@ -4,20 +4,16 @@ pub use pallet::*;
 
 #[frame_support::pallet]
 pub mod pallet {
+	use frame_support::inherent::Vec;
 	use frame_support::{
-		dispatch::{DispatchResult, DispatchResultWithPostInfo},
+		dispatch::{DispatchResult},
 		pallet_prelude::*,
-		sp_runtime::traits::{Hash, Zero},
-		traits::{Currency, ExistenceRequirement, Randomness},
-		transactional, inherent,
+		sp_runtime::traits::Hash,
 	};
 	use frame_system::{ensure_signed, pallet_prelude::OriginFor};
-	use frame_support::inherent::Vec;
 
-	use pallet_kitties::{
-		Error as KittiesError, Kitties, Pallet as PalletKitties, Kitty
-	};
-	
+	use pallet_kitties::{Error as KittiesError, Kitties, Pallet as PalletKitties};
+
 	#[pallet::pallet]
 	#[pallet::generate_store(pub(super) trait Store)]
 	pub struct Pallet<T>(_);
@@ -31,7 +27,7 @@ pub mod pallet {
 	#[pallet::generate_deposit(pub(super) fn deposit_event)]
 	pub enum Event<T: Config> {
 		Assigned(T::Hash, T::Hash),
-		ReturnedKitty(T::Hash)
+		ReturnedKitty(T::Hash),
 	}
 
 	#[pallet::storage]
@@ -53,7 +49,10 @@ pub mod pallet {
 		) -> DispatchResult {
 			let from = ensure_signed(origin)?;
 
-			ensure!(PalletKitties::<T>::is_kitty_owner(&kitty_id, &from)?, <KittiesError<T>>::NotKittyOwner);
+			ensure!(
+				PalletKitties::<T>::is_kitty_owner(&kitty_id, &from)?,
+				<KittiesError<T>>::NotKittyOwner
+			);
 
 			ensure!(<Kitties<T>>::contains_key(&kitty_id), <KittiesError<T>>::KittyNotExist);
 
@@ -70,14 +69,16 @@ pub mod pallet {
 		pub fn get_kitty_by_identity(origin: OriginFor<T>, identity: Vec<u8>) -> DispatchResult {
 			let from = ensure_signed(origin)?;
 
-			let kitty_id = Self::kitties_identities(T::Hashing::hash_of(&identity)).ok_or(<Error<T>>::NoIdentityAssociated)?;
+			let kitty_id = Self::kitties_identities(T::Hashing::hash_of(&identity))
+				.ok_or(<Error<T>>::NoIdentityAssociated)?;
 
-			ensure!(PalletKitties::<T>::is_kitty_owner(&kitty_id, &from)?, <KittiesError<T>>::NotKittyOwner);
+			ensure!(
+				PalletKitties::<T>::is_kitty_owner(&kitty_id, &from)?,
+				<KittiesError<T>>::NotKittyOwner
+			);
 
-			let kitty = <Kitties<T>>::get(&kitty_id).unwrap();
+			Self::deposit_event(Event::ReturnedKitty(kitty_id));
 
-			Self::deposit_event(Event::ReturnedKitty(kitty_id.clone()));
-			
 			Ok(())
 		}
 	}

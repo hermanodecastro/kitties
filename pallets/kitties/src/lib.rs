@@ -5,9 +5,9 @@ pub use pallet::*;
 #[frame_support::pallet]
 pub mod pallet {
 	use frame_support::{
-		dispatch::{DispatchResult, DispatchResultWithPostInfo},
+		dispatch::{DispatchResult},
 		pallet_prelude::*,
-		sp_runtime::traits::{Hash, Zero},
+		sp_runtime::traits::{Hash},
 		traits::{Currency, ExistenceRequirement, Randomness},
 		transactional,
 	};
@@ -22,6 +22,7 @@ pub mod pallet {
 	type BalanceOf<T> =
 		<<T as Config>::Currency as Currency<<T as frame_system::Config>::AccountId>>::Balance;
 
+	#[cfg_attr(feature = "std", derive(Serialize, Deserialize))]
 	#[derive(Clone, Encode, Decode, PartialEq, RuntimeDebug, TypeInfo)]
 	#[scale_info(skip_type_params(T))]
 	pub struct Kitty<T: Config> {
