@@ -44,8 +44,8 @@ The substrateKitties pallet is responsible for issuing and managing the kitties.
 ### Example
 
 ```
-- assignIdentity(hermano, 0xf4e2b03f7697096f7c78ff8642adfbafdeadf45df99f1db7f9ba77bcf2c69ed6) `returns` (hashOf(hermano), kittyId)
-- getKittyByIdentity(hermano) `returns` 0xf4e2b03f7697096f7c78ff8642adfbafdeadf45df99f1db7f9ba77bcf2c69ed6 which is the kittyId
+- assignIdentity(hermano, 0xf4e2b03f7697096f7c78ff8642adfbafdeadf45df99f1db7f9ba77bcf2c69ed6) <p style='color:yellow'>returns.</p> (hashOf(hermano), kittyId)
+- getKittyByIdentity(hermano) <p style='color:yellow'>returns.</p> 0xf4e2b03f7697096f7c78ff8642adfbafdeadf45df99f1db7f9ba77bcf2c69ed6 which is the kittyId
 ```
 
 
