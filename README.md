@@ -22,7 +22,7 @@ Run `./target/release/node-kitties --tmp --dev` for a temporary chain in develop
 
 # The project
 
-> **The substrateKitties pallet is responsible for issuing and managing the kitties. While the substrateIdentity pallet is responsible for assigning an identity to a kitty.**
+The substrateKitties pallet is responsible for issuing and managing the kitties. While the substrateIdentity pallet is responsible for assigning an identity to a kitty.
 
 ## substrateKitties extrinsics 
 
@@ -43,9 +43,12 @@ Run `./target/release/node-kitties --tmp --dev` for a temporary chain in develop
 
 ### Example
 
+```
+- assignIdentity(hermano, 0xf4e2b03f7697096f7c78ff8642adfbafdeadf45df99f1db7f9ba77bcf2c69ed6) 
+- returns (hashOf(hermano), kittyId)
 
-``- assignIdentity(hermano, 0xf4e2b03f7697096f7c78ff8642adfbafdeadf45df99f1db7f9ba77bcf2c69ed6)`` **returns** ``(hashOf(hermano), kittyId)``
-``- getKittyByIdentity(hermano)`` **returns** ``0xf4e2b03f7697096f7c78ff8642adfbafdeadf45df99f1db7f9ba77bcf2c69ed6`` **which is the kittyId.**
-
+- getKittyByIdentity(hermano) 
+- returns 0xf4e2b03f7697096f7c78ff8642adfbafdeadf45df99f1db7f9ba77bcf2c69ed6 which is the kittyId.
+```
 
 
